@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model AddAlbumViewModel
+
+<form asp-controller="Album" asp-action="AddAlbumResult" method="post">
+    <label asp-for="Album.AlbumName"></label>
+    <input asp-for="Album.AlbumName" />
+
+    <label asp-for="Album.AlbumArtist"></label>
+    <input asp-for="Album.AlbumArtist" />
+
+    <label asp-for="Album.AlbumGenre">Choose Genre</label>
+    <select asp-for="Album.AlbumGenre">
+        <option value="Rap">Rap</option>
+        <option value="Rock">Rock</option>
+        <option value="punk">punk</option>
+        <option value="Ska">Ska</option>
+        <option value="Acoustic">Acoustic</option>
+        <option value="Rock">Saab</option>
+        <option value="Emo">Emo</option>
+    </select>
+
+    <label asp-for="Album.AlbumCoverUrl"></label>
+    <input asp-for="Album.AlbumCoverUrl" />
+
+
+    <button>Add album</button>
+</form>

@@ -1,0 +1,20 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model AddAlbumResultViewModel
+
+<ul>
+    @foreach (var album in Model.Albums)
+    {
+        <li>
+            <h2>Album Name: @album.AlbumName</h2>
+            <p>Album Artist: @album.AlbumArtist</p>
+            <img src="@album.AlbumCoverUrl" alt="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.facebook.com%2Fntfaqi%2Fphotos%2F&psig=AOvVaw0oTP-5VdXAhrFSBkZR1Nf_&ust=1613009296699000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLj384ie3u4CFQAAAAAdAAAAABAD" width="200" height="200" />
+            <p>Album Genre: @album.AlbumGenre</p>
+
+        </li>
+
+    }
+</ul>>
