@@ -5,22 +5,22 @@
 }
 @model AddAlbumResultViewModel
 
-    <form asp-controller="Album" asp-action="SearchAlbum">
+    @*<form asp-controller="Album" asp-action="Search">
         <p>
-            @*<select name="searchType">
-                <option value="AlbumArtist">Artist</option>
-                <option value="AlbumName">Album name </option>
-            </select>*@
+            <select name="searchType">
+                <option value="Artist">Artist</option>
+                <option value="Album">Album name </option>
+            </select>
                 Search Album <input type="text" name="SearchString" />
                 <input type="submit" value="Search" />
         </p>
-    </form>
-    <form asp-controller="Album" asp-action="SearchArtist">
+    </form>*@
+    @*<form asp-controller="Album" asp-action="SearchArtist">
         <p>
             Search Artist <input type="text" name="SearchString" />
             <input type="submit" value="Search" />
         </p>
-    </form>
+    </form>*@
     <form asp-controller="Album" asp-action="SearchGenre">
         <select name="SearchString">
             <option value="Rap">Rap</option>
@@ -45,4 +45,4 @@
             </li>
 
         }
-    </ul>>
+    </ul>

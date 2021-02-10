@@ -2,6 +2,7 @@
 using MyRecordCollection.Models;
 using MyRecordCollection.Services;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MyRecordCollection.Controllers
@@ -46,49 +47,43 @@ namespace MyRecordCollection.Controllers
             return View(viewModel);
         }
 
-        public IActionResult SearchArtist(string searchString)
+        public IActionResult Search(string searchString, string searchType)
         {
             var viewModel = new AddAlbumResultViewModel();
             var albums = _albumDbContext.Albums;
+            var albumlist = new List<AlbumVM>();
             if (!String.IsNullOrEmpty(searchString))
             {
-                var Albumlist = albums
+                if(searchType == "Artist")
+                {
+                    albumlist = albums
                     .Select(AlbumDAL => new AlbumVM
                     {
                         AlbumName = AlbumDAL.AlbumName,
                         AlbumArtist = AlbumDAL.AlbumArtist,
                         AlbumCoverUrl = AlbumDAL.AlbumCoverUrl,
                         AlbumGenre = AlbumDAL.AlbumGenre,
-                        
+
                     })
                     .Where(albums => albums.AlbumArtist.Contains(searchString)).ToList();
-                viewModel.Albums = Albumlist;
+                }
+                else if (searchType == "Album")
+                {
+                    albumlist = albums
+                   .Select(AlbumDAL => new AlbumVM
+                       {
+                           AlbumName = AlbumDAL.AlbumName,
+                           AlbumArtist = AlbumDAL.AlbumArtist,
+                           AlbumCoverUrl = AlbumDAL.AlbumCoverUrl,
+                           AlbumGenre = AlbumDAL.AlbumGenre,
 
+                       })
 
-                return View("ViewAlbums", viewModel);
-            }
-            return ViewAlbums();
-
-        }
-
-        public IActionResult SearchAlbum(string searchString, string searchType)
-        {
-            var viewModel = new AddAlbumResultViewModel();
-            var albums = _albumDbContext.Albums;
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                var Albumlist = albums
-                    .Select(AlbumDAL => new AlbumVM
-                    {
-                       
-                         AlbumName = AlbumDAL.AlbumName,
-                        AlbumArtist = AlbumDAL.AlbumArtist,
-                        AlbumCoverUrl = AlbumDAL.AlbumCoverUrl,
-                        AlbumGenre = AlbumDAL.AlbumGenre,
-
-                    })
-                    .Where(albums => albums.AlbumName.Contains(searchString)).ToList();
-                viewModel.Albums = Albumlist;
+                       .Where(albums => albums.AlbumName.Contains(searchString)).ToList();
+                    
+                }
+                
+                viewModel.Albums = albumlist;
 
 
                 return View("ViewAlbums", viewModel);

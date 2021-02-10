@@ -10,22 +10,42 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyRecordCollection</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Album" asp-action="AddAlbum">Add Album</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Album" asp-action="ViewAlbums">View collection</a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Album" asp-action="AddAlbum">Add Album</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Album" asp-action="ViewAlbums">View collection</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <form asp-controller="Album" asp-action="Search">
+                    <p>
+                        <select name="searchType">
+                            <option value="Artist">Artist</option>
+                            <option value="Album">Album name </option>
+                        </select>
+                        Search Album <input type="text" name="SearchString" />
+                        <input type="submit" value="Search" />
+                    </p>
+                </form>
+            </div>
+       
+            <div>
+                <form asp-controller="Album" asp-action="SearchGenre">
+                    <select name="SearchString">
+                        <option value="Rap">Rap</option>
+                        <option value="Rock">Rock</option>
+                        <option value="punk">punk</option>
+                        <option value="Ska">Ska</option>
+                        <option value="Acoustic">Acoustic</option>
+                        <option value="Rock">Rock</option>
+                        <option value="Emo">Emo</option>
+                        <input type="submit" value="Search" />
+                    </select>
+                </form>
             </div>
         </nav>
     </header>
