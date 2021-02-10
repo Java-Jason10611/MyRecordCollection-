@@ -2,9 +2,7 @@
 using MyRecordCollection.Models;
 using MyRecordCollection.Services;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MyRecordCollection.Controllers
 {
@@ -46,6 +44,81 @@ namespace MyRecordCollection.Controllers
             var viewModel = new AddAlbumResultViewModel();
             viewModel.Albums = albumList;
             return View(viewModel);
+        }
+
+        public IActionResult SearchArtist(string searchString)
+        {
+            var viewModel = new AddAlbumResultViewModel();
+            var albums = _albumDbContext.Albums;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                var Albumlist = albums
+                    .Select(AlbumDAL => new AlbumVM
+                    {
+                        AlbumName = AlbumDAL.AlbumName,
+                        AlbumArtist = AlbumDAL.AlbumArtist,
+                        AlbumCoverUrl = AlbumDAL.AlbumCoverUrl,
+                        AlbumGenre = AlbumDAL.AlbumGenre,
+                        
+                    })
+                    .Where(albums => albums.AlbumArtist.Contains(searchString)).ToList();
+                viewModel.Albums = Albumlist;
+
+
+                return View("ViewAlbums", viewModel);
+            }
+            return ViewAlbums();
+
+        }
+
+        public IActionResult SearchAlbum(string searchString, string searchType)
+        {
+            var viewModel = new AddAlbumResultViewModel();
+            var albums = _albumDbContext.Albums;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                var Albumlist = albums
+                    .Select(AlbumDAL => new AlbumVM
+                    {
+                       
+                         AlbumName = AlbumDAL.AlbumName,
+                        AlbumArtist = AlbumDAL.AlbumArtist,
+                        AlbumCoverUrl = AlbumDAL.AlbumCoverUrl,
+                        AlbumGenre = AlbumDAL.AlbumGenre,
+
+                    })
+                    .Where(albums => albums.AlbumName.Contains(searchString)).ToList();
+                viewModel.Albums = Albumlist;
+
+
+                return View("ViewAlbums", viewModel);
+            }
+            return ViewAlbums();
+
+        }
+        public IActionResult SearchGenre(string searchString)
+        {
+            var viewModel = new AddAlbumResultViewModel();
+            var albums = _albumDbContext.Albums;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                var Albumlist = albums
+                    .Select(AlbumDAL => new AlbumVM
+                    {
+                        AlbumName = AlbumDAL.AlbumName,
+                        AlbumArtist = AlbumDAL.AlbumArtist,
+                        AlbumCoverUrl = AlbumDAL.AlbumCoverUrl,
+                        AlbumGenre = AlbumDAL.AlbumGenre,
+
+                    })
+                    .Where(albums => albums.AlbumGenre.Contains(searchString)).ToList();
+                viewModel.Albums = Albumlist;
+
+
+                return View("ViewAlbums", viewModel);
+            }
+            return ViewAlbums();
+
         }
     }
 }

@@ -5,16 +5,44 @@
 }
 @model AddAlbumResultViewModel
 
-<ul>
-    @foreach (var album in Model.Albums)
-    {
-        <li>
-            <h2>Album Name: @album.AlbumName</h2>
-            <p>Album Artist: @album.AlbumArtist</p>
-            <img src="@album.AlbumCoverUrl" alt="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.facebook.com%2Fntfaqi%2Fphotos%2F&psig=AOvVaw0oTP-5VdXAhrFSBkZR1Nf_&ust=1613009296699000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLj384ie3u4CFQAAAAAdAAAAABAD" width="200" height="200" />
-            <p>Album Genre: @album.AlbumGenre</p>
+    <form asp-controller="Album" asp-action="SearchAlbum">
+        <p>
+            @*<select name="searchType">
+                <option value="AlbumArtist">Artist</option>
+                <option value="AlbumName">Album name </option>
+            </select>*@
+                Search Album <input type="text" name="SearchString" />
+                <input type="submit" value="Search" />
+        </p>
+    </form>
+    <form asp-controller="Album" asp-action="SearchArtist">
+        <p>
+            Search Artist <input type="text" name="SearchString" />
+            <input type="submit" value="Search" />
+        </p>
+    </form>
+    <form asp-controller="Album" asp-action="SearchGenre">
+        <select name="SearchString">
+            <option value="Rap">Rap</option>
+            <option value="Rock">Rock</option>
+            <option value="punk">punk</option>
+            <option value="Ska">Ska</option>
+            <option value="Acoustic">Acoustic</option>
+            <option value="Rock">Rock</option>
+            <option value="Emo">Emo</option>
+            <input type="submit" value="Search" />
+        </select>
+    </form>
+    <ul>
+        @foreach (var album in Model.Albums)
+        {
+            <li>
+                <h2>Album Name: @album.AlbumName</h2>
+                <p>Album Artist: @album.AlbumArtist</p>
+                <img src="@album.AlbumCoverUrl" alt="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.facebook.com%2Fntfaqi%2Fphotos%2F&psig=AOvVaw0oTP-5VdXAhrFSBkZR1Nf_&ust=1613009296699000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLj384ie3u4CFQAAAAAdAAAAABAD" width="200" height="200" />
+                <p>Album Genre: @album.AlbumGenre</p>
 
-        </li>
+            </li>
 
-    }
-</ul>>
+        }
+    </ul>>
